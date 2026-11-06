@@ -1,0 +1,5 @@
+Geist (subset) — fonte da Vercel, licenciada sob SIL Open Font License 1.1.
+Baixada via Google Fonts (fonts.google.com/specimen/Geist) com subsetting de
+caracteres (parâmetro "text") para reduzir o tamanho do arquivo, conforme a
+licença permite (embedding/redistribuição de subset é permitido pela OFL).
+Fonte original: https://github.com/vercel/geist-font

@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+<title>BDATA — Pesquisa BFShow</title>
+<meta name="theme-color" content="#0b3d2e" />
+<link rel="manifest" href="manifest.webmanifest" />
+<link rel="icon" href="icons/favicon-32.png" sizes="32x32" />
+<link rel="apple-touch-icon" href="icons/icon-192.png" />
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+<div id="app">
+
+  <header class="topo">
+    <div class="topo-logo">
+      <div class="selo">BD</div>
+      <span>BDATA</span>
+    </div>
+    <nav class="topo-nav">
+      <button type="button" data-view="formulario" class="ativo">Formulário</button>
+      <button type="button" data-view="lista">Lista</button>
+      <button type="button" data-view="ajustes">Ajustes</button>
+    </nav>
+    <div class="topo-info">
+      <span class="pendente-badge" id="badge-pendentes">0 pendentes</span>
+      <span class="contador-dia" id="contador-dia">0 hoje</span>
+    </div>
+  </header>
+
+  <!-- ===================== VIEW: FORMULÁRIO ===================== -->
+  <section class="view ativa" id="view-formulario">
+    <div class="conteudo">
+      <form id="form-entrevista" autocomplete="off">
+
+        <div class="banner-evento">BFShow</div>
+
+        <div class="secao">
+          <h2>Entrevistado</h2>
+          <div class="grade2">
+            <div class="campo">
+              <label for="f-nome">Nome do entrevistado</label>
+              <input type="text" id="f-nome" name="nome" />
+            </div>
+            <div class="campo">
+              <label for="f-cargo">Cargo</label>
+              <input type="text" id="f-cargo" name="cargo" />
+            </div>
+          </div>
+          <div class="campo">
+            <label for="f-empresa">Empresa</label>
+            <input type="text" id="f-empresa" name="empresa" />
+          </div>
+          <div class="grade-cidade-uf">
+            <div class="campo">
+              <label for="f-cidade">Cidade</label>
+              <input type="text" id="f-cidade" name="cidade" />
+            </div>
+            <div class="campo">
+              <label for="f-uf">UF</label>
+              <select id="f-uf" name="uf">
+                <option value="">--</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="secao">
+          <h2>Perfil da Empresa</h2>
+
+          <div class="grupo-chips">
+            <label>Perfil da empresa</label>
+            <div class="chips" data-grupo="perfilEmpresa" data-tipo="unico">
+              <button type="button" class="chip" data-valor="loja_propria">Loja própria</button>
+              <button type="button" class="chip" data-valor="franquia">Franquia</button>
+              <button type="button" class="chip" data-valor="ecommerce">E-commerce</button>
+              <button type="button" class="chip" data-valor="ecommerce_loja">E-commerce e loja física</button>
+              <button type="button" class="chip" data-valor="outro">Outro</button>
+            </div>
+            <div class="campo oculto" id="campo-perfil-outro">
+              <label for="f-perfil-outro">Descreva o perfil da empresa</label>
+              <input type="text" id="f-perfil-outro" name="perfilEmpresaOutroTexto" />
+            </div>
+          </div>
+
+          <div class="grupo-chips">
+            <label>Quantas lojas</label>
+            <div class="chips" data-grupo="qtdLojas" data-tipo="unico">
+              <button type="button" class="chip" data-valor="ate_5">Até 5</button>
+              <button type="button" class="chip" data-valor="ate_10">Até 10</button>
+              <button type="button" class="chip" data-valor="ate_15">Até 15</button>
+              <button type="button" class="chip" data-valor="ate_20">Até 20</button>
+              <button type="button" class="chip" data-valor="21+">21+</button>
+            </div>
+          </div>
+
+          <div class="grupo-chips">
+            <label>Quantos funcionários</label>
+            <div class="chips" data-grupo="qtdFuncionarios" data-tipo="unico">
+              <button type="button" class="chip" data-valor="ate_10">Até 10</button>
+              <button type="button" class="chip" data-valor="ate_20">Até 20</button>
+              <button type="button" class="chip" data-valor="ate_40">Até 40</button>
+              <button type="button" class="chip" data-valor="ate_60">Até 60</button>
+              <button type="button" class="chip" data-valor="ate_100">Até 100</button>
+              <button type="button" class="chip" data-valor="100+">100+</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="secao">
+          <h2>Maiores problemas <span style="font-weight:400;font-size:12px;color:rgba(23,43,43,.55)">(toque para marcar — pode escolher mais de um)</span></h2>
+          <div class="grupo-chips">
+            <div class="chips" data-grupo="gargalos" data-tipo="multiplo">
+              <button type="button" class="chip" data-valor="jornada_escalas"><span class="marcador"></span>Jornada de trabalho e Escalas</button>
+              <button type="button" class="chip" data-valor="horas_extras"><span class="marcador"></span>Horas extras</button>
+              <button type="button" class="chip" data-valor="funcoes"><span class="marcador"></span>Funções</button>
+              <button type="button" class="chip" data-valor="metas_comissoes"><span class="marcador"></span>Metas e comissões</button>
+              <button type="button" class="chip" data-valor="doencas_atestados"><span class="marcador"></span>Doenças e atestados</button>
+              <button type="button" class="chip" data-valor="sindicato"><span class="marcador"></span>Relação com Sindicato</button>
+              <button type="button" class="chip" data-valor="turnover"><span class="marcador"></span>Turnover/Reposição de equipe</button>
+              <button type="button" class="chip" data-valor="faltas_advertencias"><span class="marcador"></span>Faltas, advertências, suspensões</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="secao">
+          <label class="checkbox-grande" for="f-consentimento">
+            <input type="checkbox" id="f-consentimento" name="consentimento" />
+            <span>Aceito receber o material gratuito</span>
+          </label>
+          <div class="campo">
+            <label for="f-contato">WhatsApp ou e-mail</label>
+            <input type="text" id="f-contato" name="contato" placeholder="(11) 90000-0000 ou nome@empresa.com" required />
+          </div>
+        </div>
+
+        <details class="secao interno" id="secao-uso-interno">
+          <summary>Uso interno</summary>
+          <div class="grupo-chips">
+            <label>Temperatura do lead</label>
+            <div class="chips" data-grupo="temperatura" data-tipo="unico">
+              <button type="button" class="chip" data-valor="quente">🔥 Quente</button>
+              <button type="button" class="chip" data-valor="morno">🌤️ Morno</button>
+              <button type="button" class="chip" data-valor="frio">❄️ Frio</button>
+            </div>
+          </div>
+          <div class="campo">
+            <label for="f-observacao">Observação livre</label>
+            <textarea id="f-observacao" name="observacao"></textarea>
+          </div>
+        </details>
+
+        <div class="botao-salvar-container">
+          <button type="button" class="botao botao-secundario" id="btn-limpar">Limpar</button>
+          <button type="submit" class="botao botao-primario" id="btn-salvar">Salvar entrevista</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- ===================== VIEW: LISTA ===================== -->
+  <section class="view" id="view-lista">
+    <div class="conteudo">
+      <div class="lista-barra">
+        <input type="search" id="busca-lista" placeholder="Buscar por nome, empresa ou cidade..." />
+        <div class="filtro-status">
+          <button type="button" class="ativo" data-status="todos">Todos</button>
+          <button type="button" data-status="pending">Pendentes</button>
+          <button type="button" data-status="sent">Enviados</button>
+        </div>
+      </div>
+
+      <div class="tabela-registros">
+        <div class="linha-registro linha-cabecalho">
+          <span>Nome / Empresa</span>
+          <span>Cidade / UF</span>
+          <span>Perfil</span>
+          <span>Status</span>
+          <span>Temperatura</span>
+        </div>
+        <div id="corpo-lista"></div>
+        <div class="vazio oculto" id="lista-vazia">Nenhum registro encontrado.</div>
+      </div>
+
+      <div class="paginacao">
+        <button type="button" id="btn-pag-anterior">◀ Anterior</button>
+        <span id="pag-info">Página 1</span>
+        <button type="button" id="btn-pag-proxima">Próxima ▶</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== VIEW: AJUSTES ===================== -->
+  <section class="view" id="view-ajustes">
+    <div class="conteudo">
+      <div class="secao">
+        <h2>Resumo</h2>
+        <div class="resumo-sync">
+          <div class="resumo-card">
+            <div class="valor" id="resumo-total">0</div>
+            <div class="rotulo">Total de registros</div>
+          </div>
+          <div class="resumo-card">
+            <div class="valor" id="resumo-pendentes">0</div>
+            <div class="rotulo">Pendentes de envio</div>
+          </div>
+          <div class="resumo-card">
+            <div class="valor" id="resumo-enviados">0</div>
+            <div class="rotulo">Enviados</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="secao">
+        <h2>Sincronização com Google Sheets</h2>
+        <div class="campo">
+          <label for="f-webhook-url">URL do Google Apps Script (Web App)</label>
+          <input type="text" id="f-webhook-url" placeholder="https://script.google.com/macros/s/XXXX/exec" />
+        </div>
+        <div class="linha-botoes">
+          <button type="button" class="botao botao-primario" id="btn-salvar-url">Salvar URL</button>
+          <button type="button" class="botao botao-secundario" id="btn-sincronizar">Sincronizar agora</button>
+        </div>
+        <div class="status-linha" id="status-sync">Nunca sincronizado.</div>
+      </div>
+
+      <div class="secao">
+        <h2>Backup</h2>
+        <p class="status-linha" style="margin-top:0">Exporta todos os registros (inclusive já enviados) em CSV, como cópia de segurança.</p>
+        <div class="linha-botoes">
+          <button type="button" class="botao botao-secundario" id="btn-exportar-csv">Exportar CSV</button>
+        </div>
+      </div>
+
+      <div class="secao">
+        <h2>Sobre</h2>
+        <p class="status-linha" style="margin-top:0">
+          Este app funciona 100% offline. Os dados ficam salvos neste aparelho e são enviados
+          para a planilha automaticamente quando houver internet, ou pelo botão "Sincronizar agora".
+        </p>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="js/datetime.js"></script>
+<script src="js/db.js"></script>
+<script src="js/csv.js"></script>
+<script src="js/sync.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
