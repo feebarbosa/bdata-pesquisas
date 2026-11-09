@@ -2,7 +2,7 @@
 // Requisições cross-origin (envio para o Apps Script) nunca passam por aqui,
 // então a sincronização sempre usa a rede diretamente.
 
-const CACHE_NOME = "bfshow-pesquisa-v1";
+const CACHE_NOME = "bfshow-pesquisa-v2";
 
 const ARQUIVOS_PARA_CACHE = [
   "./",
