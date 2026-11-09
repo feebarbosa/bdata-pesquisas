@@ -1,18 +1,24 @@
 /**
- * Recebe as entrevistas enviadas pelo app "Pesquisa Feira de Calçados" e
- * grava uma linha por entrevista na planilha vinculada a este projeto.
+ * Recebe as entrevistas enviadas pelo app "Pesquisa BFShow" e grava uma
+ * linha por entrevista na planilha indicada por SPREADSHEET_ID.
  *
  * Como publicar:
- * 1. Crie uma planilha nova no Google Sheets.
+ * 1. Crie uma planilha nova no Google Sheets e copie o ID dela (o trecho
+ *    da URL entre /d/ e /edit, ex.: docs.google.com/spreadsheets/d/<ID>/edit).
  * 2. Nela, vá em Extensões > Apps Script.
  * 3. Apague o conteúdo padrão de Code.gs e cole este arquivo inteiro.
- * 4. Clique em "Implantar" > "Nova implantação".
- * 5. Tipo: "Aplicativo da Web". Executar como: "Eu". Quem pode acessar:
+ * 4. Substitua o valor de SPREADSHEET_ID abaixo pelo ID copiado no passo 1.
+ *    (Usar o ID explícito, em vez de SpreadsheetApp.getActiveSpreadsheet(),
+ *    evita o erro "Cannot read properties of null (reading 'getSheetByName')"
+ *    que acontece quando o Web App roda sem uma planilha "ativa".)
+ * 5. Clique em "Implantar" > "Nova implantação".
+ * 6. Tipo: "Aplicativo da Web". Executar como: "Eu". Quem pode acessar:
  *    "Qualquer pessoa".
- * 6. Implante e copie a URL do tipo .../macros/s/XXXXX/exec.
- * 7. Cole essa URL na tela "Ajustes" do app, no campo da URL do Apps Script.
+ * 7. Implante e copie a URL do tipo .../macros/s/XXXXX/exec.
+ * 8. Cole essa URL na tela "Ajustes" do app, no campo da URL do Apps Script.
  */
 
+const SPREADSHEET_ID = "14-b4Yeb8nMP48oNF_ARqSGiq4nexQJpzroUbDQP-S5k";
 const NOME_ABA = "Respostas";
 
 const COLUNAS = [
@@ -36,7 +42,7 @@ const COLUNAS = [
 ];
 
 function obterAba() {
-  const planilha = SpreadsheetApp.getActiveSpreadsheet();
+  const planilha = SpreadsheetApp.openById(SPREADSHEET_ID);
   let aba = planilha.getSheetByName(NOME_ABA);
   if (!aba) {
     aba = planilha.insertSheet(NOME_ABA);

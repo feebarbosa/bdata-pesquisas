@@ -67,17 +67,21 @@ salve. Em 1–2 minutos este evento estará em
 
 ## 2. Configurar o Google Apps Script (planilha de destino)
 
-1. Crie uma planilha nova em sheets.google.com (pode ser em branco).
+1. Crie uma planilha nova em sheets.google.com (pode ser em branco) e copie
+   o ID dela — o trecho da URL entre `/d/` e `/edit`
+   (`docs.google.com/spreadsheets/d/<ID>/edit`).
 2. Menu **Extensões → Apps Script**.
 3. Apague o conteúdo do `Code.gs` padrão e cole o conteúdo do arquivo
    [`apps-script/Code.gs`](apps-script/Code.gs) deste evento.
-4. Clique em **Implantar → Nova implantação**.
-5. Tipo: **Aplicativo da Web**. "Executar como": **Eu**. "Quem pode
+4. Substitua o valor de `SPREADSHEET_ID` no topo do arquivo pelo ID copiado
+   no passo 1.
+5. Clique em **Implantar → Nova implantação**.
+6. Tipo: **Aplicativo da Web**. "Executar como": **Eu**. "Quem pode
    acessar": **Qualquer pessoa**.
-6. Clique em **Implantar**, autorize as permissões pedidas (é o seu próprio
+7. Clique em **Implantar**, autorize as permissões pedidas (é o seu próprio
    script acessando sua própria planilha) e copie a URL gerada, que termina
    em `/exec`.
-7. Essa URL é a que você vai colar no app, na tela **Ajustes**.
+8. Essa URL é a que você vai colar no app, na tela **Ajustes**.
 
 A primeira entrevista enviada já cria automaticamente a aba "Respostas" com
 os cabeçalhos das colunas.

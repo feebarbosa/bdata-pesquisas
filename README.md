@@ -53,8 +53,9 @@ qualquer evento novo também.
    - `js/app.js`: o prefixo do arquivo de backup CSV
      (`bfshow-pesquisa-backup-...`).
    - `manifest.webmanifest`: `name`, `short_name`, `description`.
-   - `apps-script/Code.gs`: implante como um **novo** Apps Script, apontando
-     para a planilha desse evento (cada evento tem a sua).
+   - `apps-script/Code.gs`: troque `SPREADSHEET_ID` pelo ID da planilha
+     desse evento e implante como um **novo** Apps Script (cada evento tem
+     a sua planilha e seu próprio deploy).
    - `icons/`: gere novos ícones se quiser um selo diferente (o script usado
      está descrito no histórico do projeto — um SVG simples convertido com
      `sharp`).
