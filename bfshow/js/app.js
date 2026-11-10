@@ -62,6 +62,7 @@
     registrarLista();
     registrarAjustes();
     registrarServiceWorker();
+    registrarTecladoCaneta();
     atualizarContadores();
 
     window.addEventListener("online", () => {
@@ -72,6 +73,22 @@
     if (navigator.onLine) {
       sincronizarPendentes().then(atualizarContadores);
     }
+  }
+
+  function registrarTecladoCaneta() {
+    // No Chrome Android, um toque com caneta/stylus foca o campo mas o
+    // Chrome nem sempre solicita o teclado virtual (ele trata a caneta como
+    // um ponteiro de precisão, parecido com mouse). Forçar foco + um clique
+    // sintético no pointerup resolve isso. Usa um listener só no document
+    // (delegação) para cobrir também os campos criados depois, como o da
+    // observação no modal da Lista.
+    document.addEventListener("pointerup", (ev) => {
+      if (ev.pointerType !== "pen") return;
+      const alvo = ev.target.closest("input, textarea, select");
+      if (!alvo || alvo.disabled || alvo.readOnly) return;
+      alvo.focus();
+      if (alvo.tagName !== "SELECT") alvo.click();
+    });
   }
 
   function popularUF() {
